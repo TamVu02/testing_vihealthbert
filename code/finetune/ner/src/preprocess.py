@@ -31,18 +31,18 @@ def read_conll(path):
     return src, trg
 
 
-test_src, test_trg = read_conll('../data/vinai_covid_word/test_word.conll')
-dev_src, dev_trg = read_conll('../data/vinai_covid_word/dev_word.conll')
-tr_src, tr_trg = read_conll('../data/vinai_covid_word/train_word.conll')
+test_src, test_trg = read_conll('/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/test_word.conll')
+dev_src, dev_trg = read_conll('/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/dev_word.conll')
+tr_src, tr_trg = read_conll('/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/train_word.conll')
 
-write_txt(test_src, '../data/vinai_covid_word/test/seq.in')
-write_txt(test_trg, '../data/vinai_covid_word/test/seq.out')
-write_txt(dev_src, '../data/vinai_covid_word/dev/seq.in')
-write_txt(dev_trg, '../data/vinai_covid_word/dev/seq.out')
-write_txt(tr_src, '../data/vinai_covid_word/train/seq.in')
-write_txt(tr_trg, '../data/vinai_covid_word/train/seq.out')
+write_txt(test_src, '/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/test/seq.in')
+write_txt(test_trg, '/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/test/seq.out')
+write_txt(dev_src, '/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/dev/seq.in')
+write_txt(dev_trg, '/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/dev/seq.out')
+write_txt(tr_src, '/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/train/seq.in')
+write_txt(tr_trg, '/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/train/seq.out')
 
 a = ['O', 'B-DATE', 'I-DATE', 'B-NAME', 'B-AGE', 'B-LOCATION', 'I-LOCATION', 'B-JOB', 'I-JOB', 'B-ORGANIZATION', 'I-ORGANIZATION', 'B-PATIENT_ID',
     'B-SYMPTOM_AND_DISEASE', 'I-SYMPTOM_AND_DISEASE', 'B-GENDER', 'B-TRANSPORTATION', 'I-TRANSPORTATION', 'I-NAME', 'I-PATIENT_ID', 'I-AGE', 'I-GENDER']
-write_txt(a, 'data/vinai_covid_word/slot_labels.txt')
+write_txt(a, '/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/slot_labels.txt')
 
