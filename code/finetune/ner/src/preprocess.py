@@ -1,3 +1,4 @@
+sub_ont=['_B-địa_điểm', '_I-địa_điểm','_B-trận_chiến', '_I-trận_chiến', '_B-tổ_chức', '_I-tổ_chức', '_B-nhân_vật', '_I-nhân_vật','_B-quân_đội', '_I-quân_đội']
 def write_txt(data, path):
     with open(path, 'w') as f:
         for item in data:
@@ -10,10 +11,11 @@ def read_conll(path):
     trg = []
     labels = []
     with open(path, 'r') as f:
+        next(f)
         tmp_src = []
         tmp_label = []
         for line in f:
-            line = line.replace('\n', '').split(' ')
+            line = line.replace('\n', '').split(' -X- _')
             if line[0] == '':
                 src.append(' '.join(tmp_src))
                 trg.append(' '.join(tmp_label))
@@ -21,28 +23,29 @@ def read_conll(path):
                 tmp_label = []
             else:
                 tmp_src.append(line[0])
-                try:
-                    tmp_label.append(line[1])
-                except:
-                    tmp_label.append('O')
-                if len(line) >= 2 and line[1] not in labels:
-                    labels.append(line[1])
+                ner_tag=line[1].replace(' ','_')
+                if ner_tag in sub_ont:
+                    tmp_label.append(ner_tag)
+                else:
+                    tmp_label.append('_O')
+                if len(line) >= 2 and ner_tag not in labels and ner_tag in sub_ont:
+                    labels.append(ner_tag)
     print(labels)
     return src, trg
 
+src, trg = read_conll('/content/testing_vihealthbert/code/finetune/ner/data/history/project-117-at-2023-10-20-02-26-ab39c0d3.conll')
 
-test_src, test_trg = read_conll('/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/test_word.conll')
-dev_src, dev_trg = read_conll('/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/dev_word.conll')
-tr_src, tr_trg = read_conll('/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/train_word.conll')
+tr_src=src[:675]
+tr_trg=trg[:675]
 
-write_txt(test_src, '/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/test/seq.in')
-write_txt(test_trg, '/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/test/seq.out')
-write_txt(dev_src, '/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/dev/seq.in')
-write_txt(dev_trg, '/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/dev/seq.out')
-write_txt(tr_src, '/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/train/seq.in')
-write_txt(tr_trg, '/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/train/seq.out')
+dev_src=src[675:]
+dev_trg=trg[675:]
 
-a = ['O', 'B-DATE', 'I-DATE', 'B-NAME', 'B-AGE', 'B-LOCATION', 'I-LOCATION', 'B-JOB', 'I-JOB', 'B-ORGANIZATION', 'I-ORGANIZATION', 'B-PATIENT_ID',
-    'B-SYMPTOM_AND_DISEASE', 'I-SYMPTOM_AND_DISEASE', 'B-GENDER', 'B-TRANSPORTATION', 'I-TRANSPORTATION', 'I-NAME', 'I-PATIENT_ID', 'I-AGE', 'I-GENDER']
-write_txt(a, '/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/slot_labels.txt')
+write_txt(dev_src, '/content/testing_vihealthbert/code/finetune/ner/data/history/dev/seq.in')
+write_txt(dev_trg, '/content/testing_vihealthbert/code/finetune/ner/data/history/dev/seq.out')
+write_txt(tr_src, '/content/testing_vihealthbert/code/finetune/ner/data/history/train/seq.in')
+write_txt(tr_trg, '/content/testing_vihealthbert/code/finetune/ner/data/history/train/seq.out')
+
+a = sub_ont
+write_txt(a, '/content/testing_vihealthbert/code/finetune/ner/data/history/slot_labels.txt')
 
