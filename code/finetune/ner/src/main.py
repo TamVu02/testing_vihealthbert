@@ -29,7 +29,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_dir", default=None, required=True, type=str, help="Path to save, load model")
     parser.add_argument("--data_dir", default="./PhoATIS", type=str, help="The input data dir")
-    parser.add_argument("--slot_label_file", default="/content/testing_vihealthbert/code/finetune/ner/data/vinai_covid_word/slot_labels.txt", type=str, help="Slot Label file")
+    parser.add_argument("--slot_label_file", default="/content/testing_vihealthbert/code/finetune/ner/data/history/slot_labels.txt", type=str, help="Slot Label file")
 
     parser.add_argument(
         "--model_type",
