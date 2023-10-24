@@ -54,6 +54,9 @@ def compute_metrics(slot_preds, slot_labels):
 
 def get_slot_metrics(preds, labels):
     assert len(preds) == len(labels)
+    print(preds)
+    print("+++++++++++++++")
+    print(labels)
     print(classification_report(labels, preds, digits=4))
     return {
         "slot_precision": precision_score(labels, preds),
