@@ -46,6 +46,6 @@ write_txt(dev_trg, '/content/testing_vihealthbert/code/finetune/ner/data/history
 write_txt(tr_src, '/content/testing_vihealthbert/code/finetune/ner/data/history/train/seq.in')
 write_txt(tr_trg, '/content/testing_vihealthbert/code/finetune/ner/data/history/train/seq.out')
 
-a = sub_ont
+a = sub_ont.append("_O")
 write_txt(a, '/content/testing_vihealthbert/code/finetune/ner/data/history/slot_labels.txt')
 
