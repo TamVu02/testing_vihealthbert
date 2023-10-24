@@ -22,6 +22,8 @@ MODEL_PATH_MAP = {
 }
 
 def get_slot_labels(args):
+    print([label.strip()
+        for label in open(os.path.join(args.data_dir, args.slot_label_file), "r", encoding="utf-8")])
     return [
         label.strip()
         for label in open(os.path.join(args.data_dir, args.slot_label_file), "r", encoding="utf-8")
