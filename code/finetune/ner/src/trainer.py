@@ -19,7 +19,7 @@ class Trainer(object):
         self.args = args
         self.train_dataset = train_dataset
         self.dev_dataset = dev_dataset
-        self.test_dataset = test_dataset
+        #self.test_dataset = test_dataset
 
         self.slot_label_lst = get_slot_labels(args)
         # Use cross entropy ignore index as padding label id so that only real label ids contribute to the loss later
@@ -65,10 +65,10 @@ class Trainer(object):
         else:
             t_total = len(train_dataloader) // self.args.gradient_accumulation_steps * self.args.num_train_epochs
 
-        results = self.evaluate("dev")
-        print(results)
-        results = self.evaluate("test")
-        print(results)
+        #results = self.evaluate("dev")
+        #print(results)
+        #results = self.evaluate("test")
+        #print(results)
         # Prepare optimizer and schedule (linear warmup and decay)
         no_decay = ["bias", "LayerNorm.weight"]
         optimizer_grouped_parameters = [
