@@ -46,6 +46,6 @@ write_txt(dev_trg, '/content/testing_vihealthbert/code/finetune/ner/data/history
 write_txt(tr_src, '/content/testing_vihealthbert/code/finetune/ner/data/history/train/seq.in')
 write_txt(tr_trg, '/content/testing_vihealthbert/code/finetune/ner/data/history/train/seq.out')
 
-a = ['_O','_B-địa_điểm', '_I-địa_điểm','_B-trận_chiến', '_I-trận_chiến', '_B-tổ_chức', '_I-tổ_chức', '_B-nhân_vật', '_I-nhân_vật','_B-quân_đội', '_I-quân_đội']
+a = ['O','địa_điểm','trận_chiến', 'tổ_chức','nhân_vật','quân_đội']
 write_txt(a, '/content/testing_vihealthbert/code/finetune/ner/data/history/slot_labels.txt')
 
